@@ -96,3 +96,10 @@ val test7_3 = date_to_string (0, 1, 0) = "January 0, 0"
 val test8_1 = number_before_reaching_sum (10, [1,2,3,4,5]) = 3
 val test8_2 = number_before_reaching_sum (10, [11]) = 0
 val test8_3 = number_before_reaching_sum (10, [8,8,8]) = 1
+
+val test9_1 = what_month 70 = 3
+val test9_2 = what_month 100 = 4
+val test9_3 = what_month 10 = 1
+val test9_4 = what_month 365 = 12
+val test9_5 = what_month 160 = 6
+

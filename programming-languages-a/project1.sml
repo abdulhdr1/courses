@@ -133,3 +133,13 @@ fun number_before_reaching_sum(sum: int, int_list: int list) =
       end
   in process_int_list(int_list, 0, 0)
   end 
+
+(* Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns
+what month that day is in (1 for January, 2 for February, etc.). Use a list holding 12 integers and your
+answer to the previous problem. *)
+fun what_month (day_of_year: int) = 
+  let 
+    val days_by_month = [31, 28, 31, 30, 31, 30, 31, 31, 30 ,31 , 30, 31]
+  in 
+    number_before_reaching_sum(day_of_year, days_by_month) + 1
+  end
