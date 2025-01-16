@@ -49,3 +49,15 @@ fun number_in_month (dates_list: date list, month: int) =
   end
 
   
+(* Write a function number_in_months that takes a list of dates and a list of months (i.e., an int list)
+and returns the number of dates in the list of dates that are in any of the months in the list of months.
+Assume the list of months has no number repeated. Hint: Use your answer to the previous problem. *)
+fun number_in_months (dates_list: date list, months_list: int list ) = 
+  let 
+    fun count_in_month (month: int) = number_in_month (dates_list, month)
+    fun process_months_list (months_list: int list, count: int) = 
+      if null months_list
+      then count
+      else (count_in_month (hd months_list) + process_months_list (tl months_list, count))
+  in process_months_list (months_list, 0)
+  end

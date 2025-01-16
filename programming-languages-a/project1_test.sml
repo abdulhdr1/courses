@@ -38,6 +38,14 @@ val test2_3 = number_in_month ([], 1) = 0
 val test2_4 = number_in_month ([(2012,1,1)], 1) = 1
 val test2_6 = number_in_month ([(2012,1,1), (2012,2,1)], 1) = 1
 val test2_7 = number_in_month ([(2012,2,1), (2012,3,1)], 1) = 0
-
 val test2_5 = number_in_month ([(2012,1,1), (2012,1,2)], 1) = 2
 val test2_8 = number_in_month ([(2012,1,1), (2012,1,2), (2012,2,1)], 1) = 2
+
+val test3_1 = number_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = 3
+val test3_2 = number_in_months ([], [1,2,3]) = 0
+val test3_3 = number_in_months ([(2012,1,1)], []) = 0
+val test3_4 = number_in_months ([(2012,1,1)], [1]) = 1
+val test3_5 = number_in_months ([(2012,1,1), (2012,2,1)], [1,2]) = 2
+val test3_6 = number_in_months ([(2012,1,1), (2012,2,1)], [3,4]) = 0
+val test3_7 = number_in_months ([(2012,1,1), (2012,1,2)], [1,2]) = 2
+val test3_8 = number_in_months ([(2012,1,1), (2012,2,2), (2012,3,3)], [1,2,3]) = 3
