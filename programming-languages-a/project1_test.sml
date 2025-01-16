@@ -51,14 +51,37 @@ val test3_6 = number_in_months ([(2012,1,1), (2012,2,1)], [3,4])                
 val test3_7 = number_in_months ([(2012,1,1), (2012,1,2)], [1,2])                            = 2
 val test3_8 = number_in_months ([(2012,1,1), (2012,2,2), (2012,3,3)], [1,2,3])              = 3
 
-val test4_1 = dates_in_month ([base,     (2013,12,1)],base_month)       = [base]
-val test4_2 = dates_in_month ([base,     (2013,12,1),base],base_month)  = [base, base]
-val test4_3 = dates_in_month ([(99,2,99),(2013,2,1),base],2)            = [(99,2,99),(2013,2,1)]
-val test4_4 = dates_in_month ([base,     base,base],9)                  = []
-val test4_5 = dates_in_month ([(1,9,2),  (1,9,3),(1,9,4)],9)            = [(1,9,2),(1,9,3),(1,9,4)]
+val test4_1 = dates_in_month ([base,     (2013,12,1)],          base_month) = [base]
+val test4_2 = dates_in_month ([base,     (2013,12,1), base],    base_month) = [base, base]
+val test4_3 = dates_in_month ([(99,2,99),(2013,2,1),  base],    2)          = [(99,2,99),(2013,2,1)]
+val test4_4 = dates_in_month ([base,     base,        base],    9)          = []
+val test4_5 = dates_in_month ([(1,9,2),  (1,9,3),     (1,9,4)], 9)          = [(1,9,2),(1,9,3),(1,9,4)]
 
-val test5_1 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4])   = [(2012,2,28),(2011,3,31),(2011,4,28)]
-val test5_2 = dates_in_months ([base,base,(2011,3,31),(2011,4,28)],[base_month,3,4])        = [base, base,(2011,3,31),(2011,4,28)]
-val test5_3 = dates_in_months ([(2011,3,31),(2011,4,28)],[3,4])                             = [(2011,3,31),(2011,4,28)]
-val test5_4 = dates_in_months ([(2012,2,28),base,(2011,3,31),(2011,4,28)],[base_month])     = [base]
-val test5_5 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[])        = []
+val test5_1 = dates_in_months ([
+    (2012,2,28),
+    (2013,12,1),
+    (2011,3,31),    
+    (2011,4,28)], 
+    [2,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
+val test5_2 = dates_in_months ([
+    base,
+    base,
+    (2011,3,31),
+    (2011,4,28)], 
+    [base_month,3,4]) = [base, base,(2011,3,31),(2011,4,28)]
+val test5_3 = dates_in_months ([
+    (2011,3,31),
+    (2011,4,28)],
+    [3,4]) = [(2011,3,31),(2011,4,28)]
+val test5_4 = dates_in_months ([
+    (2012,2,28),
+    base,
+    (2011,3,31),
+    (2011,4,28)],
+    [base_month]) = [base]
+val test5_5 = dates_in_months ([
+    (2012,2,28),
+    (2013,12,1),
+    (2011,3,31),
+    (2011,4,28)],
+    []) = []
