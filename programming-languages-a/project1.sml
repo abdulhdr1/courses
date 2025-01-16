@@ -156,3 +156,20 @@ fun month_range (day1: int, day2: int) =
     in 
       month_day1::month_range(day1 + 1, day2) 
     end
+
+(* Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
+evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list. *)
+fun oldest (dates_list: date list) = 
+  if null dates_list
+  then NONE
+  else 
+    let 
+      fun process_dates_list (dates_list: date list, current_oldest: date) = 
+        if null dates_list
+        then SOME current_oldest
+        else 
+          if is_older (current_oldest, hd dates_list)
+          then process_dates_list(tl dates_list, hd dates_list)
+          else process_dates_list(tl dates_list, current_oldest)
+    in process_dates_list(tl dates_list, hd dates_list)
+    end
