@@ -77,3 +77,12 @@ fun dates_in_month (dates_list: date list, month: int) =
       then (hd dates_list)::next
       else next
     end
+
+(* Write a function dates_in_months that takes a list of dates and a list of months (i.e., an int list)
+and returns a list holding the dates from the argument list of dates that are in any of the months in
+the list of months. Assume the list of months has no number repeated. Hint: Use your answer to the
+previous problem and SML’s list-append operator (@). *)
+fun dates_in_months (dates_list: date list, months_list: int list) =
+  if null months_list
+  then []
+  else (dates_in_month (dates_list, hd months_list))@(dates_in_months (dates_list, tl months_list))
