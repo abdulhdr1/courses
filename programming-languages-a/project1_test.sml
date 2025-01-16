@@ -85,3 +85,10 @@ val test5_5 = dates_in_months ([
     (2011,3,31),
     (2011,4,28)],
     []) = []
+
+val test6_1 = get_nth (["hi", "there", "how", "are", "you"], 2) = "there"
+val test6_2 = get_nth (["a","b","c"], 1) = "a"
+
+val test7_1 = date_to_string (2013, 6, 1) = "June 1, 2013"
+val test7_2 = date_to_string (2025, 1, 16) = "January 16, 2025"
+val test7_3 = date_to_string (0, 1, 0) = "January 0, 0"

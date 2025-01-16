@@ -86,3 +86,30 @@ fun dates_in_months (dates_list: date list, months_list: int list) =
   if null months_list
   then []
   else (dates_in_month (dates_list, hd months_list))@(dates_in_months (dates_list, tl months_list))
+
+(* Write a function get_nth that takes a list of strings and an int n and returns the n
+th element of the list where the head of the list is 1st. Do not worry about the case where 
+the list has too few elements: your function may apply hd or tl to the empty list in this case, which is okay. *)
+fun get_nth(string_list: string list, n: int) =
+  if n = 1 
+  then hd string_list
+  else get_nth(tl string_list, n-1)
+(* Not sure what the last of the description part means, I'm using hd and tl and when applying them to an empty list
+ie hd [] or tl [] I still get nil, which errors because of diverging return types *)
+
+
+(* Write a function date_to_string that takes a date and returns a string of the form January 20, 2013
+(for example). Use the operator ^ for concatenating strings and the library function Int.toString
+for converting an int to a string. For producing the month part, do not use a bunch of conditionals.
+Instead, use a list holding 12 strings and your answer to the previous problem. For consistency, put a
+comma following the day and use capitalized English month names: January, February, March, April,
+May, June, July, August, September, October, November, December. *)
+fun date_to_string (date: date ) = 
+  let 
+    val month_string_list = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    val month_string = get_nth(month_string_list, date_month date) 
+    val day_string = Int.toString(date_day date) 
+    val year_string = Int.toString(date_year date) 
+  in month_string ^ " " ^ day_string ^ ", " ^ year_string 
+  end
+
