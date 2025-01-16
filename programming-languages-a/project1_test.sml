@@ -103,3 +103,8 @@ val test9_3 = what_month 10 = 1
 val test9_4 = what_month 365 = 12
 val test9_5 = what_month 160 = 6
 
+val test10_1 = month_range (31, 34) = [1,2,2,2]
+val test10_2 = month_range (10, 16) = [1,1,1,1,1,1,1]
+val test10_3 = month_range (330, 335) = [11,11,11,11,11,12]
+
+

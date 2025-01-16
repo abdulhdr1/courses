@@ -143,3 +143,16 @@ fun what_month (day_of_year: int) =
   in 
     number_before_reaching_sum(day_of_year, days_by_month) + 1
   end
+
+(* Write a function month_range that takes two days of the year day1 and day2 and returns an int list
+[m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
+of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2. *)
+fun month_range (day1: int, day2: int) =
+  if day1 > day2
+  then []
+  else 
+    let 
+      val month_day1 = what_month day1
+    in 
+      month_day1::month_range(day1 + 1, day2) 
+    end
