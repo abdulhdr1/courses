@@ -92,3 +92,7 @@ val test6_2 = get_nth (["a","b","c"], 1) = "a"
 val test7_1 = date_to_string (2013, 6, 1) = "June 1, 2013"
 val test7_2 = date_to_string (2025, 1, 16) = "January 16, 2025"
 val test7_3 = date_to_string (0, 1, 0) = "January 0, 0"
+
+val test8_1 = number_before_reaching_sum (10, [1,2,3,4,5]) = 3
+val test8_2 = number_before_reaching_sum (10, [11]) = 0
+val test8_3 = number_before_reaching_sum (10, [8,8,8]) = 1

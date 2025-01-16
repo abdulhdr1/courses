@@ -113,3 +113,23 @@ fun date_to_string (date: date ) =
   in month_string ^ " " ^ day_string ^ ", " ^ year_string 
   end
 
+(* Write a function number_before_reaching_sum that takes an int called sum, which you can assume
+is positive, and an int list, which you can assume contains all positive numbers, and returns an int.
+You should return an int n such that the first n elements of the list add to less than sum, but the first
+n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in
+value; it is okay for an exception to occur if this is not the case. *)
+fun number_before_reaching_sum(sum: int, int_list: int list) =
+  let 
+    fun is_sum_or_more (total_sum: int) = sum <= total_sum
+    fun process_int_list (int_list: int list, total_sum: int, index: int) = 
+      let 
+        val next_num = hd int_list
+        val next_total = total_sum + next_num
+        val next_index = index + 1
+      in 
+        if is_sum_or_more next_total
+        then index
+        else process_int_list(tl int_list, next_total, next_index)
+      end
+  in process_int_list(int_list, 0, 0)
+  end 
