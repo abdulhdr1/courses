@@ -107,8 +107,58 @@ val test10_1 = month_range (31, 34) = [1,2,2,2]
 val test10_2 = month_range (10, 16) = [1,1,1,1,1,1,1]
 val test10_3 = month_range (330, 335) = [11,11,11,11,11,12]
 
-val test11_1 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
+val test11_1 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2012,2,28)
 val test11_2 = oldest([]) = NONE
 val test11_3 = oldest([(2012,2,28)]) = SOME (2012,2,28)
 val test11_4 = oldest([(2012,2,28),(2011,3,31),(2011,4,28),(2020,4,28)]) = SOME (2020,4,28)
 
+val test12_1 = number_in_months_challenge ([(2012,2,28), (2013,12,1),(2011,3,31),(2011,4,28)],[2,2,3,4]) = 3
+val test12_2 = number_in_months_challenge ([],           [1,2,3,3])                                      = 0
+val test12_3 = number_in_months_challenge ([(2012,1,1)], [])                                             = 0
+val test12_4 = number_in_months_challenge ([(2012,1,1)], [1,1])                                          = 1
+val test12_5 = number_in_months_challenge ([(2012,1,1), (2012,2,1)], [1,2,2])                            = 2
+val test12_6 = number_in_months_challenge ([(2012,1,1), (2012,2,1)], [3,4,4])                            = 0
+val test12_7 = number_in_months_challenge ([(2012,1,1), (2012,1,2)], [1,2,2])                            = 2
+val test12_8 = number_in_months_challenge ([(2012,1,1), (2012,2,2), (2012,3,3)], [1,2,1,2,3])            = 3
+
+val test13_1 = dates_in_months_challenge ([
+    (2012,2,28),
+    (2013,12,1),
+    (2011,3,31),    
+    (2011,4,28)], 
+    [2,3,3,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
+val test13_2 = dates_in_months_challenge ([
+    base,
+    base,
+    (2011,3,31),
+    (2011,4,28)], 
+    [base_month,3,base_month,3,4]) = [base, base,(2011,3,31),(2011,4,28)]
+val test13_3 = dates_in_months_challenge ([
+    (2011,3,31),
+    (2011,4,28)],
+    [3,4,3,4,3,4,3,4]) = [(2011,3,31),(2011,4,28)]
+val test13_4 = dates_in_months_challenge ([
+    (2012,2,28),
+    base,
+    (2011,3,31),
+    (2011,4,28)],
+    [base_month,base_month]) = [base]
+val test13_5 = dates_in_months_challenge ([
+    (2012,2,28),
+    (2013,12,1),
+    (2011,3,31),
+    (2011,4,28)],
+    []) = []
+
+val test14_1 = reasonable_date (2023,1,1) = true
+val test14_2 = reasonable_date (0,1,1) = false
+val test14_3 = reasonable_date (2023,0,1) = false 
+val test14_4 = reasonable_date (2023,13,1) = false
+val test14_5 = reasonable_date (2023,1,0) = false
+val test14_6 = reasonable_date (2023,1,32) = false
+val test14_7 = reasonable_date (2023,2,29) = false
+val test14_8 = reasonable_date (2020,2,29) = true
+val test14_9 = reasonable_date (2100,2,29) = false
+val test14_10 = reasonable_date (2000,2,29) = true
+val test14_11 = reasonable_date (2023,4,31) = false
+val test14_12 = reasonable_date (2023,4,30) = true

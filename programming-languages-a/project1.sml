@@ -173,3 +173,80 @@ fun oldest (dates_list: date list) =
           else process_dates_list(tl dates_list, current_oldest)
     in process_dates_list(tl dates_list, hd dates_list)
     end
+
+
+fun value_in_list (value, list) = 
+  if null list
+  then false
+  else 
+    if (hd list) = value
+    then true
+    else value_in_list(value, tl list)
+
+fun remove_duplicates (list) = 
+  if null list 
+  then list
+  else
+    let
+      fun rec_check_list (list, new_list) =
+        let 
+          fun check_hd_in_list (value) = value_in_list (value, new_list)  
+        in 
+          if null list
+          then ([], new_list)
+          else 
+            if check_hd_in_list (hd list)
+            then rec_check_list (tl list, new_list)
+            else rec_check_list (tl list, new_list@[hd list])
+        end
+    in #2 (rec_check_list (list, []))
+    end
+  
+(* Challenge Problem: Write functions number_in_months_challenge and dates_in_months_challenge
+that are like your solutions to problems 3 and 5 except having a month in the second argument multiple
+times has no more effect than having it once. (Hint: Remove duplicates, then use previous work.) *)
+fun number_in_months_challenge(dates_list: date list, months_list: int list) =
+  number_in_months (dates_list, remove_duplicates months_list)
+
+fun dates_in_months_challenge(dates_list: date list, months_list: int list) =
+  dates_in_months (dates_list, remove_duplicates months_list)
+
+
+fun poly_get_nth(list, n: int) =
+  if n = 1 
+  then hd list
+  else poly_get_nth(tl list, n-1)
+
+
+(* Challenge Problem: Write a function reasonable_date that takes a date and determines if it
+describes a real date in the common era. A “real date” has a positive year (year 0 did not exist), a
+month between 1 and 12, and a day appropriate for the month. Solutions should properly handle leap
+years. Leap years are years that are either divisible by 400 or divisible by 4 but not divisible by 100.
+(Do not worry about days possibly lost in the conversion to the Gregorian calendar in the Late 1500s.) *)
+fun reasonable_date(date: date) =
+  let 
+    val year = date_year date
+    val valid_year = year > 0
+  in 
+    if valid_year
+    then 
+      let 
+        val month = date_month date
+        val valid_month = month >= 1 andalso month <= 12
+      in 
+        if valid_month
+        then
+          let 
+            val day = date_day date
+            val is_leap_year = year mod 400 = 0 orelse ((year mod 4 = 0) andalso (year mod 100 <> 0)) 
+            val days_by_month = [31, (if is_leap_year then 29 else 28), 31, 30, 31, 30, 31, 31, 30 ,31 , 30, 31]
+            val valid_day = day >= 1 andalso day <= (poly_get_nth (days_by_month, month))
+          in 
+            if valid_day
+            then true
+            else false
+          end
+        else false
+      end
+    else false
+  end
